@@ -23,9 +23,9 @@ public struct ImagesCarouselMolecule: View {
                     .scaledToFill()
             }
         }
-        .tabViewStyle(
-            PageTabViewStyle(indexDisplayMode: .automatic)
-        )
+        #if os(iOS)
+        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
+        #endif
         .clipShape(
             RoundedRectangle(cornerRadius: DSRadius.radius16)
         )
