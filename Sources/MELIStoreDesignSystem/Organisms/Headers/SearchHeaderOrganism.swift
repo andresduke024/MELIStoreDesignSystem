@@ -31,34 +31,13 @@ public struct SearchHeaderOrganism: View {
     }
     
     public var body: some View {
-        VStack(spacing: DSSpacing.spacing16) {
-            ZStack(
-                alignment: .center,
-            ) {
-                HStack {
-                    SecondaryIconButtonMolecule(
-                        icon: DSIcons.back,
-                        onPress: onBackPress
-                    )
-                    
-                    Spacer()
-                }
-                
-                TitleTextAtom(
-                    title,
-                    color: theme.current.onPrimaryColor
-                )
-            }
-            
+        HeaderOrganism(title: title, onBackPress: onBackPress) {
             SearchTextFieldMolecule(
                 text: $searchText,
                 size: .medium,
                 onCommit: onSearchCommit
             )
-            .padding(.bottom, DSSpacing.spacing4)
         }
-        .padding()
-        .background(theme.current.primaryColor)
     }
 }
 

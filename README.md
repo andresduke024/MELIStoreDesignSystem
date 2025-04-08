@@ -12,8 +12,6 @@
 
 - **Plataforma**: iOS 14.0 o superior
 - **Lenguaje**: Swift 5.0 o superior
-- **Dependencias**:
-  - [MELIStoreCore](https://github.com/andresduke024/MELIStoreCore/tree/feature/initial): Módulo central que proporciona modelos y servicios esenciales.
 
 ## Instalación
 

@@ -9,4 +9,6 @@ public enum DSIcons: String {
     case search = "magnifyingglass"
     case back = "arrow.backward"
     case go = "arrow.forward"
+    case checkCircle = "checkmark.circle.fill"
+    case checkSeal = "checkmark.seal.fill"
 }

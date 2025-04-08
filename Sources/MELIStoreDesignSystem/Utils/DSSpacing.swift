@@ -8,6 +8,8 @@
 import SwiftUI
 
 public struct DSSpacing {
+    public static let spacingNone: CGFloat = 0
+    public static let spacing2: CGFloat = 2
     public static let spacing4: CGFloat = 4
     public static let spacing6: CGFloat = 6
     public static let spacing8: CGFloat = 8

@@ -1,13 +1,13 @@
 //
-//  HeadlineTextAtom.swift
+//  SubHeadlineTextAtom.swift
 //  MELIStoreDesignSystem
 //
-//  Created by Andres Duque on 7/04/25.
+//  Created by Andres Duque on 8/04/25.
 //
 
 import SwiftUI
 
-public struct HeadlineTextAtom: View {
+public struct SubheadlineTextAtom: View {
     private let text: String
     private let color: Color
     private let weight: Font.Weight
@@ -28,14 +28,14 @@ public struct HeadlineTextAtom: View {
     public var body: some View {
         Text(text)
             .multilineTextAlignment(align)
-            .font(.headline)
+            .font(.subheadline)
             .fontWeight(weight)
             .foregroundStyle(color)
     }
 }
 
 #Preview {
-    HeadlineTextAtom(
+    SubheadlineTextAtom(
         "",
         color: .black
     )
