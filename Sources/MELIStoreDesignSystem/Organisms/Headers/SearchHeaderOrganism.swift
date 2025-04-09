@@ -15,18 +15,24 @@ public struct SearchHeaderOrganism: View {
     @Binding
     private var searchText: String
     private let title: String
+    private let searchError: String?
     private let onBackPress: () -> Void
+    private let onSearchChanged: (Bool) -> Void
     private let onSearchCommit: () -> Void
     
     public init(
         title: String,
+        searchError: String?,
         searchText: Binding<String>,
         onBackPress: @escaping () -> Void,
+        onSearchChanged:  @escaping (Bool) -> Void,
         onSearchCommit: @escaping () -> Void
     ) {
         self.title = title
+        self.searchError = searchError
         self._searchText = searchText
         self.onBackPress = onBackPress
+        self.onSearchChanged = onSearchChanged
         self.onSearchCommit = onSearchCommit
     }
     
@@ -35,7 +41,9 @@ public struct SearchHeaderOrganism: View {
             SearchTextFieldMolecule(
                 text: $searchText,
                 size: .medium,
-                onCommit: onSearchCommit
+                onEditingChange: onSearchChanged,
+                onCommit: onSearchCommit,
+                error: searchError
             )
         }
     }
@@ -44,8 +52,10 @@ public struct SearchHeaderOrganism: View {
 #Preview {
     SearchHeaderOrganism(
         title: "Title",
+        searchError: nil,
         searchText: .constant(""),
         onBackPress: {},
+        onSearchChanged: { _ in },
         onSearchCommit: {}
     )
 }

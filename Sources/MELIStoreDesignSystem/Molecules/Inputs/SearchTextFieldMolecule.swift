@@ -16,16 +16,24 @@ public struct SearchTextFieldMolecule: View {
     
     private let size: DSSize
     
+    private let onEditingChange: (Bool) -> Void
+    
     private let onCommit: () -> Void
+    
+    private let error: String?
     
     public init(
         text: Binding<String>,
         size: DSSize = .large,
-        onCommit: @escaping () -> Void
+        onEditingChange: @escaping (Bool) -> Void,
+        onCommit: @escaping () -> Void,
+        error: String? = nil
     ) {
         self._text = text
         self.size = size
+        self.onEditingChange = onEditingChange
         self.onCommit = onCommit
+        self.error = error
     }
     
     public var body: some View {
@@ -37,7 +45,9 @@ public struct SearchTextFieldMolecule: View {
             size: size,
             placeholder: "Buscar",
             text: $text,
-            onCommit: onCommit
+            onEditingChange: onEditingChange,
+            onCommit: onCommit,
+            error: error
         )
     }
 }

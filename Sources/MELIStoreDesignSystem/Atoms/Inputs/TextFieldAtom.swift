@@ -16,7 +16,9 @@ public struct TextFieldAtom: View {
     private let icon: IconAtom?
     private let size: DSSize
     private let placeholder: String
+    private let onEditingChange: (Bool) -> Void
     private let onCommit: () -> Void
+    private let error: String?
     
     @Binding
     private var text: String
@@ -26,40 +28,65 @@ public struct TextFieldAtom: View {
         size: DSSize = .large,
         placeholder: String,
         text: Binding<String>,
-        onCommit: @escaping () -> Void
+        onEditingChange: @escaping (Bool) -> Void,
+        onCommit: @escaping () -> Void,
+        error: String? = nil,
     ) {
         self.icon = icon
         self.size = size
         self.placeholder = placeholder
         self._text = text
+        self.onEditingChange = onEditingChange
         self.onCommit = onCommit
+        self.error = error
     }
     
     public var body: some View {
-        VStack(alignment: .leading) {
-            HStack(spacing: DSSpacing.spacing12) {
-                if let icon { icon }
-               
-                TextField(
-                    placeholder,
-                    text: $text,
-                    onCommit: onCommit
-                )
-                .multilineTextAlignment(.leading)
-                .foregroundStyle(theme.current.secondaryColor)
-                .frame(maxWidth: .infinity)
-                
+        VStack(
+            alignment: .leading,
+            spacing: DSSpacing.spacing8
+        ) {
+            VStack(alignment: .leading) {
+                HStack(spacing: DSSpacing.spacing12) {
+                    if let icon { icon }
+                   
+                    TextField(
+                        placeholder,
+                        text: $text,
+                        onEditingChanged: onEditingChange,
+                        onCommit: onCommit,
+                    )
+                    .multilineTextAlignment(.leading)
+                    .foregroundStyle(theme.current.secondaryColor)
+                    .frame(maxWidth: .infinity)
+                    
+                }
+                .padding(DSSpacing.spacing4)
             }
-            .padding(DSSpacing.spacing4)
+            .frame(minHeight: 40)
+            .frame(maxWidth: .infinity)
+            .padding(.horizontal, DSSpacing.spacing16)
+            .padding(.vertical, verticalPadding)
+            .background(
+                RoundedRectangle(cornerRadius: DSRadius.radius32)
+                    .fill(theme.current.secondaryBackgroundColor)
+            )
+            
+            if let error {
+                HStack(
+                    alignment: .center,
+                    spacing: DSSpacing.spacing6
+                ) {
+                    Image(systemName: DSIcons.exclamation.rawValue)
+                        
+                    Text(error)
+                        .font(.footnote)
+                        .multilineTextAlignment(.leading)
+                }
+                .foregroundStyle(theme.current.onPrimaryColor)
+                .padding(.horizontal, DSSpacing.spacing12)
+            }
         }
-        .frame(minHeight: 40)
-        .frame(maxWidth: .infinity)
-        .padding(.horizontal, DSSpacing.spacing16)
-        .padding(.vertical, verticalPadding)
-        .background(
-            RoundedRectangle(cornerRadius: DSRadius.radius32)
-                .fill(theme.current.secondaryBackgroundColor)
-        )
     }
     
     private var verticalPadding: CGFloat {
@@ -77,7 +104,9 @@ public struct TextFieldAtom: View {
         size: .medium,
         placeholder: "Test",
         text: .constant(""),
-        onCommit: {}
+        onEditingChange: { _ in },
+        onCommit: {},
+        error: "Hello I'm an error"
     )
     .padding()
 }
