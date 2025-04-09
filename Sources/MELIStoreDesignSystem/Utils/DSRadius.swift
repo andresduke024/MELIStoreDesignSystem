@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public struct DSRadius {
+public struct DSRadius: Sendable {
     public static let radius8: CGFloat = 8
     public static let radius14: CGFloat = 14
     public static let radius16: CGFloat = 16

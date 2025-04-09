@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum DSImages: ImageProtocol {
+enum DSImages: ImageProtocol, Sendable {
     case imageNotFound
     case notFoundError
     case generalError
