@@ -7,6 +7,6 @@
 
 import SwiftUI
 
-public struct DSConstants {
+public struct DSConstants: Sendable {
     static let maxErrorImageHeight: CGFloat = 400
 }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public struct DSElevation {
+public struct DSElevation: Sendable {
     public static let elevationXNone: CGFloat = 0
     public static let elevationYNone: CGFloat = 0
 }

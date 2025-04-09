@@ -5,7 +5,7 @@
 //  Created by Andres Duque on 8/04/25.
 //
 
-public struct AttributeUIModel: Identifiable {
+public struct AttributeUIModel: Identifiable, Sendable {
     public let id: String
     public let name: String
     public let description: String

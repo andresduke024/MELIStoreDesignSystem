@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public struct DSSpacing {
+public struct DSSpacing: Sendable {
     public static let spacingNone: CGFloat = 0
     public static let spacing2: CGFloat = 2
     public static let spacing4: CGFloat = 4

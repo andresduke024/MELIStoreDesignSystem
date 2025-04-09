@@ -5,7 +5,7 @@
 //  Created by Andres Duque on 6/04/25.
 //
 
-public enum DSIcons: String {
+public enum DSIcons: String, Sendable {
     case search = "magnifyingglass"
     case back = "arrow.backward"
     case go = "arrow.forward"

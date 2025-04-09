@@ -5,7 +5,7 @@
 //  Created by Andres Duque on 7/04/25.
 //
 
-public enum DSSize {
+public enum DSSize: Sendable {
     case large
     case medium
 }
