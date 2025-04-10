@@ -12,4 +12,5 @@ public enum DSIcons: String, Sendable {
     case checkCircle = "checkmark.circle.fill"
     case checkSeal = "checkmark.seal.fill"
     case exclamation = "exclamationmark.triangle.fill"
+    case message = "message"
 }

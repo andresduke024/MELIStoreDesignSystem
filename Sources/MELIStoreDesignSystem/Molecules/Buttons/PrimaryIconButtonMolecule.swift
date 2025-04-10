@@ -14,12 +14,15 @@ public struct PrimaryIconButtonMolecule: View {
     
     private let icon: DSIcons
     private let onPress: () -> Void
+    private let size: DSSize
     
     public init(
         icon: DSIcons,
+        size: DSSize = .large,
         onPress: @escaping () -> Void
     ) {
         self.icon = icon
+        self.size = size
         self.onPress = onPress
     }
     
@@ -32,6 +35,7 @@ public struct PrimaryIconButtonMolecule: View {
         }.buttonStyle(
             IconButtonStyle(
                 backgroundColor: theme.current.primaryColor,
+                size: size
             )
         )
     }

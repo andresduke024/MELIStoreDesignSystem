@@ -14,62 +14,71 @@ public struct ListItemOrganism: View {
     
     private let image: String
     private let title: String
+    private let attributes: [AttributeUIModel]
     private let onPress: () -> Void
     
-    private let maxHeight: CGFloat = 250
+    private let size: CGFloat = 400
     
     public init(
         image: String,
         title: String,
+        attributes: [AttributeUIModel],
         onPress: @escaping () -> Void
     ) {
         self.image = image
         self.title = title
+        self.attributes = Array(attributes.prefix(2))
         self.onPress = onPress
     }
     
     public var body: some View {
         Button(action: onPress) {
-            ZStack(
-                alignment: .bottom,
+            VStack(
+                alignment: .center,
+                spacing: DSSpacing.spacing8
             ) {
                 ImageAtom(url: image)
-                    .frame(maxHeight: maxHeight)
-                    .background(
-                        RoundedRectangle(cornerRadius: DSRadius.radius32)
-                            .fill(theme.current.thirdBackgroundColor)
-                    )
-                    .clipShape(
-                        RoundedRectangle(cornerRadius: DSRadius.radius32)
-                    )
-                
-                HStack(alignment: .center) {
-                    CalloutTextAtom(
-                        title,
-                        color: theme.current.secondaryColor
-                    )
-                    .multilineTextAlignment(.leading)
-                    .lineLimit(1)
-                    .padding(.horizontal, DSSpacing.spacing8)
-                    .padding(.vertical, DSSpacing.spacing4)
+                    .frame(maxHeight: size)
+                    .aspectRatio(contentMode: .fit)
+                    .clipShape(RoundedRectangle(cornerRadius: DSRadius.radius18))
                     
-                    Spacer()
+                VStack(
+                    alignment: .leading,
+                    spacing: DSSpacing.spacing12
+                ) {
+                    HStack(alignment: .bottom) {
+                        VStack(
+                            alignment: .leading,
+                            spacing: DSSpacing.spacing6
+                        ) {
+                            CalloutTextAtom(
+                                title,
+                                color: theme.current.secondaryColor
+                            )
+                            .multilineTextAlignment(.leading)
+                            .lineLimit(1)
+                            .padding(.horizontal, DSSpacing.spacing8)
+                            .padding(.vertical, DSSpacing.spacing4)
+                                
+                            AttributeListItemMolecule(
+                                icon: .checkCircle,
+                                useDivider: false,
+                                attributes: attributes
+                            )
+                        }
+                        
+                        Spacer()
+                        
+                        PrimaryIconButtonMolecule(
+                            icon: .go,
+                            size: .small,
+                            onPress: onPress
+                        )
+                    }
                     
-                    PrimaryIconButtonMolecule(
-                        icon: .go,
-                        onPress: onPress
-                    )
+                    Divider()
+                        .padding(.bottom)
                 }
-                .padding(.vertical, DSSpacing.spacing12)
-                .padding(.horizontal, DSSpacing.spacing8)
-                .background(
-                    RoundedRectangle(cornerRadius: DSRadius.radius32)
-                        .fill(theme.current.secondaryBackgroundColor)
-                )
-                .clipShape(
-                    RoundedRectangle(cornerRadius: DSRadius.radius32)
-                )
-                .padding(DSSpacing.spacing8)
             }
             .frame(maxWidth: .infinity)
         }
@@ -80,6 +89,7 @@ public struct ListItemOrganism: View {
     ListItemOrganism(
         image: "",
         title: "Celular",
+        attributes: []
     ) {}
         .padding()
 }
