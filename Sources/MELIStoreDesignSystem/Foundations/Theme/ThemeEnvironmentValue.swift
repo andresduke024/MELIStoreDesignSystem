@@ -7,7 +7,13 @@
 
 import SwiftUI
 
+private struct ThemeKey: EnvironmentKey {
+    static let defaultValue: ThemeManager = ThemeManager(theme: MainTheme())
+}
+
 public extension EnvironmentValues {
-    @Entry
-    var theme: ThemeManager = .init(theme: MainTheme())
+    var theme: ThemeManager {
+        get { self[ThemeKey.self] }
+        set { self[ThemeKey.self] = newValue }
+    }
 }
