@@ -8,8 +8,8 @@
 import Observation
 
 @Observable
-public final class ThemeManager {
-    public var current: Theme
+public final class ThemeManager: Sendable {
+    let current: Theme
     
     public init(theme: Theme) {
         self.current = theme
