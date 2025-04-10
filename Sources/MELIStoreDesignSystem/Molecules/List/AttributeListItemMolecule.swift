@@ -12,13 +12,13 @@ public struct AttributeListItemMolecule: View {
     @Environment(\.theme)
     private var theme: ThemeManager
 
-    private let title: String
+    private let title: String?
     private let icon: DSIcons
     private let useDivider: Bool
     private let attributes: [AttributeUIModel]
 
     public init(
-        title: String,
+        title: String? = nil,
         icon: DSIcons,
         useDivider: Bool,
         attributes: [AttributeUIModel]
@@ -36,11 +36,13 @@ public struct AttributeListItemMolecule: View {
         ) {
             if useDivider { Divider() }
 
-            Title2TextAtom(
-                title,
-                color: theme.current.secondaryColor
-            )
-            .padding(.bottom, DSSpacing.spacing8)
+            if let title {
+                Title2TextAtom(
+                    title,
+                    color: theme.current.secondaryColor
+                )
+                .padding(.bottom, DSSpacing.spacing8)
+            }
 
             ForEach(attributes) { attribute in
                 HStack(spacing: DSSpacing.spacing6) {

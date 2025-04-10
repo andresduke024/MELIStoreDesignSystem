@@ -9,19 +9,20 @@ import SwiftUI
 
 public struct IconButtonStyle: ButtonStyle {
     
-    private let size: CGFloat = 15
-    
     private let backgroundColor: Color
+    private let size: DSSize
     
     public init(
         backgroundColor: Color,
+        size: DSSize = .large
     ) {
         self.backgroundColor = backgroundColor
+        self.size = size
     }
     
     public func makeBody(configuration: Configuration) -> some View {
            configuration.label
-            .frame(width: size, height: size)
+            .frame(width: iconSize, height: iconSize)
                .padding()
                .background(
                     Circle()
@@ -29,4 +30,12 @@ public struct IconButtonStyle: ButtonStyle {
                )
                .clipShape(Circle())
        }
+    
+    private var iconSize: CGFloat {
+        return switch size {
+        case .large: 15
+        case .medium: 10
+        case .small: 5
+        }
+    }
 }

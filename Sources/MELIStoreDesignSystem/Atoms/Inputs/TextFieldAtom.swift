@@ -95,6 +95,8 @@ public struct TextFieldAtom: View {
             DSSpacing.spacing12
         case .medium:
             DSSpacing.spacing8
+        case .small:
+            DSSpacing.spacing4
         }
     }
 }
